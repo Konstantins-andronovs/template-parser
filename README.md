@@ -1,27 +1,92 @@
-# TemplateParser
+# Create simple template parser
+Please complete the following programming exercise.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
+### Instalation
+To keep thing simple we use The Angular CLI (command-line interface tool)
+https://angular.io/cli 
 
-## Development server
+```sh
+npm install -g @angular/cli
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+and then in project directory use
 
-## Code scaffolding
+```sh
+npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```sh
+ng serve
+```
 
-## Build
+In your browser, open http://localhost:4200/
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Task 1
 
-## Running unit tests
+You have been provided with an sample HTML in textarea.
+Your task is to:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1) Detect html tags with placeholders prefixed with "#placeholder_"
+```html
+<div #placeholder_first_name></div>
+```
+2) When user presses "Parse template" button, form with input fields parsed from that HTML should be displayed
+For example if template contains:
+```html
+<div #placeholder_first_name></div>
+<div #placeholder_last_name></div>
+```
 
-## Running end-to-end tests
+- Form with two input fields should be displayed:
+> first_name
+> last_name
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+3) When user fills the form with values and presses "Display result" button, html code with injected form values should be displayed:
 
-## Further help
+For example if users fills form with 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+> first_name: Alex
+> last_name: Jones
+
+The result displayed should be:
+
+```html
+<div #placeholder_first_name><ng-container>Alex</ng-container></div>
+<div #placeholder_last_name><ng-container>Jones</ng-container></div>
+```
+
+
+#### Note
+User can change HTML and add more div's with placeholders like:
+
+```html
+<div #placeholder_first_name></div>
+<div #placeholder_last_name></div>
+...
+<div #placeholder_age></div>
+<div #placeholder_address></div>
+```
+
+so the form should be dynamic and support a many field as many placeholders you have in your HTML!
+
+### Task1 Expected Result:
+
+[![N|Solid](https://i.ibb.co/b6hRhB8/task1.png)](https://nodesource.com/products/nsolid)
+
+## Task 2 
+This task is optional
+
+When user navigates to page 'Task 2' by clicking on the link 'Task2' 
+Task2 angular component should use result HTML from the Task 1 as the component template.
+
+For example result:
+
+```html
+<div #placeholder_first_name><ng-container>Alex</ng-container></div>
+<div #placeholder_last_name><ng-container>Jones</ng-container></div>
+```
+
+Should ne rendered and displayed as
+
+>Alex
+>Jones 
